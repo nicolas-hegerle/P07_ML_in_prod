@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+ <div class ="centered">
+
+  <h1 text-align: center>Wine-O-Meter API Documentation</h1>
+
+  <p>
+    !!Welcome to our great API documentation for wine scoring!!
+  </p>
+
+  <p>
+    What is this API all about? <br>
+    You have a wine you think is great and would like to see if science can help? <br>
+    Well you are at the right place!!
+  </p>
+
+  <div>
+    <h2>
+      <ins>
+        Endpoints
+      </ins>
+    </h2>
+
+    <blockquote>
+      POST /predict
+    </blockquote>
+
+    <div>
+
+      <p>
+        This endpoint allows you to predict your wine's score based on 11 key physico-chemical charcteriestics:<br>
+        <pre>
+            <b>
+fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, density, pH, sulphates, alcohol.
+            </b>
+        </pre>
+      </p>
+
+      <h2>
+        <ins>
+          How can you request this endpoint?
+        </ins>
+      </h2>
+
+      <p>
+        You should request this endpoint using a POST method with a JSON content.<br>
+        Your JSON should contain an "input" key with associated list of lists containing your physico-chemical measurments.<br>
+        <br>
+        Example input: <br>
+          <code>
+  <b>{<br>
+    "input": [[7.0, 0.27, 0.36, 20.7, 0.045, 45.0, 170.0, 1.001, 3.0, 0.45, 8.8], [5.0, 0.98, 0.32, 18.9, 0.050, 75.0, 122.0, 0.401, 3.1, 0.21, 1.2]]<br>
+  }</b>
+          </code>
+      </p>
+      <p>
+        Example request: <br>
+        <code><b>
+          curl -i -H "Content-Type: application/json" -X POST -d 'my_input' http://127.0.0.1:5000/predict
+        </code></b>
+      </p>
+      <p>
+        This will return a json file as follows:<br>
+          <code><b>
+  {<br>
+    "wine_score": [scores]<br>
+  }
+          </b></code>
+      </p>
+      
+      <h2>
+        <ins>
+          Errors
+        </ins>
+      </h2>
+
+      <p>
+        Our API will return an error with format:
+        <pre>
+          <code>
+  {
+    "code": <i>HTTP status code</i>,
+    "name": <i>name of this error</i>,
+    "description": <i>a short description</i>
+  }
+          </code>
+        </pre>
+      </p>
+
+      <p>
+        Identified errors:
+        <ul>
+          <li>Missing JSON: you forgot to provide a JSON in you request</li>
+          <li>Missing key "input": the provided JSON is lacking the required "input" key</li>
+          <li>Data Size Error: the data provided are either missing values or have too many values</li>
+          <li>Data Type Error: the data provided are of wrong type(Ex: text instead of float)</li>
+        </ul>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

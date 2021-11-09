@@ -1,0 +1,33 @@
+.centered {
+    position: relative;
+    margin: 0 auto;
+    width: 700px;    
+  }
+
+.centered::before{
+    content: "";
+    background-image: url("./wines_img.jpeg");
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.15;
+  }
+
+h1{
+    width:500px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  
+  pre {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+  }
