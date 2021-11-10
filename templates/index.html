@@ -63,7 +63,7 @@ fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free su
       <p>
         Example request: <br>
         <code><b>
-          curl -i -H "Content-Type: application/json" -X POST -d 'my_input' http://127.0.0.1:5000/predict
+          curl -i -H "Content-Type: application/json" -X POST -d '{"input":[[data_1], [data_2]]}' https://wine-o-meter-nhe.herokuapp.com/predict
         </code></b>
       </p>
       <p>
