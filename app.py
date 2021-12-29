@@ -52,22 +52,21 @@ class DataTypeError(HTTPException):
 
 
 
-
+# define a function to make the predictions
 def make_prediction(input):
     """
-    Return a prediction with our regression model.
+    Returns a prediction with our regression model.
     """
-    # Load model
+    # Load the model
     classifier = joblib.load(MODEL_PATH)
-    # Make prediction (the classifier expects a pandas dataframe with the column names from model 
-    # trainingthat will be transformed in the
 
+    # check that all input lists have the correct number of values
     nb_features = classifier.n_features_in_ #number of expected values for predictions
     input_size = [len(x) for x in input] #lists the size of all data lists
     if input_size != [nb_features] * len(input): #compares sizes
         raise DataSizeError()
 
-
+    # make the predictions with our loaded model
     prediction = [int(i) for i in classifier.predict(input)]
 
     return prediction
@@ -82,20 +81,18 @@ def predict():
         if "input" not in json_input:
             # If 'input' is not in our JSON we raise our own error
             raise MissingKeyError()
-        
+
         input = json_input['input']
-        
+
         try:
             input = [[float(i) for i in x] for x in input]
         except ValueError:
             raise DataTypeError()
-        
+
         wine_score = make_prediction(input)
 
         # Return prediction
         response = {
-            # Since prediction is a float and jsonify function can't handle
-            # floats we need to convert it to string
             "wine_score" : wine_score,
             }
         return jsonify(response), 200
