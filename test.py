@@ -4,7 +4,7 @@
 import requests
 
 # The url to which the test request wil be made
-url = "http://127.0.0.1:5000/predict"
+url = "https://wine-o-meter-nhe.herokuapp.com/predict"
 
 # Input and request for a single prediction
 input_simple = {

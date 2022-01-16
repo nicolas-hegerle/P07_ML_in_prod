@@ -1,8 +1,7 @@
 # ML in production
 
-### You can check the app @ https://wine-o-meter-nhe.herokuapp.com/
-
-**Wine-o-meter** is a future unicorn application. It allows wine producers to predict the quality score of their wine based on physicochemical inputs. The startup behind this innovation is convinced about its ability to disrupt the world of wine. 🍷
+## You can check the app @ https://wine-o-meter-nhe.herokuapp.com/
+<br>
 
 ## Project 🚧
 
@@ -23,93 +22,24 @@ Your mission is to put this model into production by **building an API**. To suc
 
 In the following text, we describe the technical expectations:
 
-###  `/predict` endpoint
+## **<ins>App URL</ins>**
 
-You should provide at least **one endpoint** `/predict`. The full URL would look like something like this: `https://your-url.com/predict`.
+Try it out, follow the link to learn how to get your predictions:   
+https://wine-o-meter-nhe.herokuapp.com/
 
-This endpoint accepts **POST method** with JSON input data and it should return the predictions. We assume **inputs will be always well formatted**. It means you do not have to manage errors. We leave the error handling as a bonus.
+POST your ```input``` @ https://wine-o-meter-nhe.herokuapp.com/predict to get your predictions
 
-Input example:
 
-```
-{
-  "input": [[7.0, 0.27, 0.36, 20.7, 0.045, 45.0, 170.0, 1.001, 3.0, 0.45, 8.8], [7.0, 0.27, 0.36, 20.7, 0.045, 45.0, 170.0, 1.001, 3.0, 0.45, 8.8]]
-}
-```
-
-The response should be a JSON with one key `prediction` corresponding to the prediction.
-
-Response example:
-
-```
-{
-  "prediction":[6,6]
-}
-```
-
-### Documentation page
-
-You need to provide the users with a **small HTML page documentation** about your API.
-
-It has to be located at the index of your website. If we take the URL example above, it should be located directly at `https://your-url.com`).
-
-This small documentation should at least include:
-- An h1 title: the title is up to you.
-- A description of every endpoints the user can call with the endpoint name, the HTTP method, the required input and the expected output (you can give example).
-
-You are free to add other any other relevant informations and style your HTML as you wish.
-
-### Online production
-
-You have to **host your API online**. We recommend you to use [Heroku](https://www.heroku.com/) as it is free of charge. But you are free to choose any other hosting provider.
-
-## Helpers 🦮
-
-To help you start with this project we provide you with some pieces of advice.
-
-### Look at the file your team provided you
-
-The training process may reveal some information about the libraries you are going to need in order to run your model in production 😉.
-
-### Create a virtual environment
-
-Create your virtual environment. If you plan to use Heroku, you can start with a `requirements.txt` as Heroku is using this file to setup the server environment.
-
-Do not forget to update this file as you move forward and install more dependencies.
-
-### Code the `/predict` endpoint
-
-You can use the test notebook provided by the team to assert it works as expected.
-
-### Create the HTML documentation
-
-Once the endpoint is working, you can create the documentation.
-
-### Deploy to online server
-
-It's time to show up your work and push your code to online server.
-
-### Share your code
-
-In order to get evaluation, do not forget to share your code on a [Github](https://github.com/) repository. You can create a [`README.md`](https://guides.github.com/features/mastering-markdown/) file with a quick description about this project, how to setup locally and the online URL.
-
-## Deliverable 📬
-
-To complete this project, you should deliver:
-
-- The **whole code** stored in a Github repository. You will include the repository's URL.
-- An **online API** on Heroku server (or any other provider you choose) with an **HTML page documentation** at the website index and **one `/predict` endpoint** at least that respect the technical description above. We should be able to request the API endpoint `/predict` using `curl`:
 
 ```shell
-$ curl -i -H "Content-Type: application/json" -X POST -d '{"input": [[7.0, 0.27, 0.36, 20.7, 0.045, 45.0, 170.0, 1.001, 3.0, 0.45, 8.8]]}' http://your-url/predict
+$ curl -i -H "Content-Type: application/json" -X POST -d '{"input": [[7.0, 0.27, 0.36, 20.7, 0.045, 45.0, 170.0, 1.001, 3.0, 0.45, 8.8]]}' https://wine-o-meter-nhe.herokuapp.com/predict
 ```
-
 Or Python:
 
 ```python
 import requests
 
-response = requests.post("https://your-url/predict", json={
+response = requests.post("https://wine-o-meter-nhe.herokuapp.com/predict", json={
     "input": [[7.0, 0.27, 0.36, 20.7, 0.045, 45.0, 170.0, 1.001, 3.0, 0.45, 8.8]]
 })
 print(response.json())
